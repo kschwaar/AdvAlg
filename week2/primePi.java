@@ -6,6 +6,7 @@
 //If we switch to a 1, then it's NOT prime.
 
 import java.util.*;
+import java.lang.System;
 
 public class primePi{
 	public static void main(String[]args){
@@ -13,7 +14,12 @@ public class primePi{
 		System.out.println("Enter an integer.  Enter -1 to quit.");
 		int x = input.nextInt();
 		while(x!=-1){
-			System.out.println("primePi(" + x + ") = " + primePi(x));
+			long startTime = System.nanoTime();
+			for(int i=0; i<1000; i++){
+				primePi(x);
+			}
+			long endTime = (System.nanoTime() - startTime)/1000;
+			System.out.println(x+"\t"+endTime);
 			System.out.println("Enter an integer.  Enter -1 to quit.");
 			x=input.nextInt();
 		}
@@ -22,7 +28,6 @@ public class primePi{
 	public static int primePi(int input){
 		BitSet sieve = new BitSet(input);
 		ArrayList<Integer> primes = new ArrayList<Integer>();
-		System.out.println(sieve.size());
 		int size = sieve.size();
 		int last = (int)Math.sqrt(size)+1;
 		//Initialize the bitset//
@@ -36,7 +41,13 @@ public class primePi{
 				}
 			}
 		}
-		return sieve.cardinality();
+		int output = 0;
+		for(int i=1; i<=input; i++){
+			if(sieve.get(i)){
+				output++;
+			}
+		}
+		return output;
 	}
 }
 			
