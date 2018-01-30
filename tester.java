@@ -1,14 +1,16 @@
 import java.math.*;
+import java.lang.*;
 import java.util.*;
+import java.math.BigInteger;
 
 public class tester{
-		
 	public static void main(String[]args){
-		for(int i=0; i<10000; i++){
-			Random rand = new Random();
-			BigInteger b = new BigInteger(5,5,rand);
-			BigInteger c = new BigInteger("15");
-			System.out.println(b);
+		BigInteger i = BigInteger.ONE;
+		BigInteger j = BigInteger.ZERO;
+		
+		for(int i=1; i<21; i++){
+			BigInteger j = BigInteger.ZERO;
+			System.out.println(j);
 		}
 	}
 }
