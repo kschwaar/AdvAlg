@@ -3,8 +3,8 @@
 public class modularExp{
 	public static void main(String[]args){
 		int a = 7;
-		int b = 12345;
-		int n = 392;
+		int b = 1000;
+		int n = 35;
 		System.out.println(a + "^" + b + " mod " + n + " = ");
 		System.out.println(modexp(a,b,n));
 	}
@@ -21,5 +21,3 @@ public class modularExp{
 		return d;
 	}
 }
-
-//Much better complexity O(log(n))
