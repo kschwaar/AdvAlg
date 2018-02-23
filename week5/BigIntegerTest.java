@@ -9,28 +9,42 @@ public class BigIntegerTest{
 		BigInteger one = BigInteger.ONE;
 		BigInteger zero = BigInteger.ZERO;
 		BigInteger ten = BigInteger.TEN;
-		
+
 		BigInteger p;
-		BigInteger q;
+		BigInteger a;
+		BigInteger b;
 		BigInteger n;
-		BigInteger phi_of_n;
-		BigInteger e;
-		BigInteger d;
+
+		p = randomPrime(1024);
+		a = randomPrime(1024);
+		b = randomPrime(1024);
+		n = randomPrime(1024);	
 		
-		/*
-		System.out.println(randomInteger(300));
-		System.out.println(randomPrime(300));
-		System.out.println(subToPrime(300));
-		*/
-		
-		p = randomPrime(300);
-		q = randomPrime(300);
-		n = multiply(p,q);
-		
-		System.out.println(n);
-		System.out.println("The bit length of n is: "+n.bitLength());
-		String nString = n.toString();
-		System.out.println(nString.length());
+		System.out.println("BEGIN TESTING\n--------------------");
+		System.out.println("A+B = "+a.add(b));
+		System.out.println("A*B = "+multiply(a,b));
+		System.out.println("Bitlength of n = "+n.bitLength());
+		int comparator = a.compareTo(b);
+		if(comparator == -1){
+			System.out.println("A is less than B");
+		} else if (comparator == 0){
+			System.out.println("A == B");
+		} else {
+			System.out.println("A is greater than B");
+		}
+		System.out.println("A/B = "+a.divide(b));
+		System.out.println("gcd(a,b)"+a.gcd(b));
+		System.out.println("Is probably prime.  Expected 1. :: "+p.isProbablePrime(100));
+		System.out.println("A mod n == "+a.mod(n));
+		System.out.println("A^-1 mod p == "+a.modInverse(p));
+		System.out.println("A^b mod n == "+a.modPow(b,n));
+		System.out.println("A*B mod n == "+multiply(a,b).mod(n));
+		System.out.println("Next prime after p is "+p.nextProbablePrime());
+		Random rand = new Random();
+		BigInteger q = new BigInteger("1");
+		q = q.probablePrime(1024,rand);
+		System.out.println("Is q probably prime? "+q.isProbablePrime(100));
+		System.out.println("q == "+q);
 	}
 	
 	//Returns a random BigInteger 'digits' long.

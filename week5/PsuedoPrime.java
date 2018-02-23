@@ -1,4 +1,4 @@
-//FermatTest: Test anything from 1 through p-1 and if modexp == 1 then it's prime.
+//FermatTest: Test anything from 2 through p-1 and if modexp == 1 then it's prime.
 //This is a much more inexpensive test
 //Used for numbers of 300 digits or more.
 //If a number passes here, then we apply an even stronger test.
@@ -8,7 +8,7 @@ import java.math.*;
 import java.lang.*;
 
 public class PsuedoPrime{
-	static long listSize = 1000000;
+	static long listSize = 10000000;
 	public static void main(String[]args){
 		ArrayList<Integer> p = primeList(listSize);
 		TreeSet<Integer> primes = new TreeSet<Integer>(p);
@@ -24,23 +24,32 @@ public class PsuedoPrime{
 			}
 		}
 		
+		System.out.println("List size == "+listSize);
 		System.out.println("If 2^(n-1) doesn't equal 1 mod n,");
 		System.out.println("then n is prime exactly "+count+" times");
 		
 		//If 2^(n-1) mod n is equal to 1, then n is usually prime.  How often??
-		count=0;
+		int notPrime=0;
+		int isPrime=0;
 		for(long n=3; n<=listSize; n++){
 			if(modexp(2,n-1,n)==1){
 				if((primes.contains((int)n))){
-					++count;
+					isPrime++;
+				}
+				else{
+					notPrime++;
 				}
 			}
 		}
-		System.out.println(count + " false positives.");
 		
+		double ratioIsPrime = (double)isPrime/(double)primes.size();
+		double ratioNotPrime = (double)notPrime/(double)primes.size();
 		
-		System.out.println("This is a probability of "+(double)count/primes.size());
-
+		System.out.println("Ratio of being prime is: "+ratioIsPrime);
+		System.out.println("Ratio of not being prime is "+ratioNotPrime);
+		System.out.println(ratioIsPrime+ratioNotPrime);
+		
+		System.out.println(primes.size()-count + " false positives.");
 	}
 	
 	public static long modexp(long a, long b, long n){
